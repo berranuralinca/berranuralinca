@@ -1,5 +1,4 @@
 ### Hi there 👋, Berra Nur Alinca
-#### software student
 I am a software student.
 
 - 🌱 I’m currently learning c++ 
