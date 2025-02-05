@@ -1,8 +1,3 @@
-
-isim: GitHub Yılan Oyunu
-
-
-
 Açık:
 
   # İş akışının her gün UTC saat dilimine göre gece yarısı çalışacak şekilde planlanması
@@ -93,8 +88,4 @@ işler:
 
           publish_branch: çıktı
 
-          # İsteğe bağlı olarak özel bir commit mesajı ayarlayabilirsiniz
-
-          commit_message: "Yılan animasyonunu güncelle [ci'yi atla]"
-
-
+          # 
