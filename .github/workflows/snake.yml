@@ -1,91 +1,42 @@
-Açık:
+name: GitHub Snake Game
 
-  # İş akışının her gün UTC saat dilimine göre gece yarısı çalışacak şekilde planlanması
-
-  takvim:
-
+on:
+  # Schedule the workflow to run daily at midnight UTC
+  schedule:
     - cron: "0 0 * * *"
-
-
-
-  # İş akışının manuel olarak tetiklenmesine izin ver
-
-  iş akışı_gönderimi:
-
-
-
-  # Ana dala yapılan göndermelerde iş akışını tetikle
-
-  itmek:
-
-    dallar:
-
-      - ana
-
-
-
-işler:
-
-  oluşturmak:
-
-    çalışır: ubuntu-latest
-
-    zaman aşımı dakikaları: 10
-
-
-
-    adımlar:
-
-      # Adım 1: Depoyu kontrol edin
-
-      - adı: Ödeme Deposu
-
-        kullanımlar: actions/checkout@v3
-
-
-
-      # Adım 2: Yılan animasyonlarını oluşturun
-
-      - isim: GitHub Katkıları Yılan Animasyonları Oluştur
-
-        kullanımlar: Platane/snk@v3
-
-        ile:
-
-          # Animasyonu oluşturmak için GitHub kullanıcı adı
-
-          github_kullanıcı_adı: ${{ github.repository_owner }}
-
-
-
-          # Çıktı dosyalarını ve bunların yapılandırmalarını tanımlayın
-
-          çıktılar: |
-
-            dist/github-yılan.svg
-
+  # Allow manual triggering of the workflow
+  workflow_dispatch:
+  # Trigger the workflow on pushes to the main branch
+  push:
+    branches:
+      - main
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      # Step 2: Generate the snake animations
+      - name: Generate GitHub Contributions Snake Animations
+        uses: Platane/snk@v3
+        with:
+          # GitHub username to generate the animation for
+          github_user_name: ${{ github.repository_owner }}
+          # Define the output files and their configurations
+          outputs: |
+            dist/github-snake.svg
             dist/github-snake-dark.svg?palette=github-dark
-
-            dist/ocean.gif?color_snake=turuncu&color_dots=#bfd6f6,#8dbdff,#64a1f4,#4b91f1,#3c7dd9
-
-        çevre:
-
+            dist/ocean.gif?color_snake=orange&color_dots=#bfd6f6,#8dbdff,#64a1f4,#4b91f1,#3c7dd9
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-
-
-      # Adım 3: Oluşturulan dosyaları 'çıktı' dalına dağıtın
-
-      - name: Çıkış Dalına Dağıt
-
-        kullanımlar: peaceiris/actions-gh-pages@v3
-
-        ile:
-
+      # Step 3: Deploy the generated files to the 'output' branch
+      - name: Deploy to Output Branch
+        uses: peaceiris/actions-gh-pages@v3
+        with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-
-          yayımlama_dizini: ./dist
-
-          publish_branch: çıktı
-
-          # 
+          publish_dir: ./dist
+          publish_branch: output
+          # Optionally, you can set a custom commit message
+          commit_message: "Update snake animation [skip ci]"
