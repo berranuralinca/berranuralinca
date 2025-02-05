@@ -1,0 +1,100 @@
+
+isim: GitHub Yılan Oyunu
+
+
+
+Açık:
+
+  # İş akışının her gün UTC saat dilimine göre gece yarısı çalışacak şekilde planlanması
+
+  takvim:
+
+    - cron: "0 0 * * *"
+
+
+
+  # İş akışının manuel olarak tetiklenmesine izin ver
+
+  iş akışı_gönderimi:
+
+
+
+  # Ana dala yapılan göndermelerde iş akışını tetikle
+
+  itmek:
+
+    dallar:
+
+      - ana
+
+
+
+işler:
+
+  oluşturmak:
+
+    çalışır: ubuntu-latest
+
+    zaman aşımı dakikaları: 10
+
+
+
+    adımlar:
+
+      # Adım 1: Depoyu kontrol edin
+
+      - adı: Ödeme Deposu
+
+        kullanımlar: actions/checkout@v3
+
+
+
+      # Adım 2: Yılan animasyonlarını oluşturun
+
+      - isim: GitHub Katkıları Yılan Animasyonları Oluştur
+
+        kullanımlar: Platane/snk@v3
+
+        ile:
+
+          # Animasyonu oluşturmak için GitHub kullanıcı adı
+
+          github_kullanıcı_adı: ${{ github.repository_owner }}
+
+
+
+          # Çıktı dosyalarını ve bunların yapılandırmalarını tanımlayın
+
+          çıktılar: |
+
+            dist/github-yılan.svg
+
+            dist/github-snake-dark.svg?palette=github-dark
+
+            dist/ocean.gif?color_snake=turuncu&color_dots=#bfd6f6,#8dbdff,#64a1f4,#4b91f1,#3c7dd9
+
+        çevre:
+
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
+
+      # Adım 3: Oluşturulan dosyaları 'çıktı' dalına dağıtın
+
+      - name: Çıkış Dalına Dağıt
+
+        kullanımlar: peaceiris/actions-gh-pages@v3
+
+        ile:
+
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+          yayımlama_dizini: ./dist
+
+          publish_branch: çıktı
+
+          # İsteğe bağlı olarak özel bir commit mesajı ayarlayabilirsiniz
+
+          commit_message: "Yılan animasyonunu güncelle [ci'yi atla]"
+
+
