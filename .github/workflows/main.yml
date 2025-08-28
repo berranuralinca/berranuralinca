@@ -10,14 +10,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Repo’yu çek
+      # 1️⃣ Repo’yu çek
       - uses: actions/checkout@v4
 
-      # dist klasörünü oluştur
+      # 2️⃣ dist klasörünü oluştur
       - name: Create dist folder
         run: mkdir -p dist
 
-      # Snake SVG ve GIF üret
+      # 3️⃣ Snake SVG ve GIF üret
       - uses: Platane/snk@v3
         id: snake-gif
         with:
@@ -26,20 +26,21 @@ jobs:
             dist/github-contribution-grid-snake.gif
             dist/github-contribution-grid-snake.svg
 
-      # Durumu kontrol et
+      # 4️⃣ Durumu kontrol et
       - run: git status
 
-      # SVG’ye dinamik tema CSS ekle
+      # 5️⃣ SVG’ye dinamik tema CSS ekle (dark/light)
       - name: Add dynamic background to SVG
         run: |
-          sed -i '1s|<svg|<svg>\n<style>@media (prefers-color-scheme: dark) { svg { background-color: #000; } } @media (prefers-color-scheme: light) { svg { background-color: #fff; } }</style>|' dist/github-contribution-grid-snake.svg
+          echo '<style>@media (prefers-color-scheme: dark) { svg { background-color: #000; } } @media (prefers-color-scheme: light) { svg { background-color: #fff; } }</style>' | cat - dist/github-contribution-grid-snake.svg > dist/temp.svg
+          mv dist/temp.svg dist/github-contribution-grid-snake.svg
 
-      # GIF’i kontrastlı yapmak (siyah arka plan)
+      # 6️⃣ GIF’i kontrastlı yapmak (siyah arka plan)
       - name: Make GIF background black
         run: |
-          convert dist/github-contribution-grid-snake.gif -background black -alpha remove dist/github-contribution-grid-snake.gif
+          magick convert dist/github-contribution-grid-snake.gif -background black -alpha remove dist/github-contribution-grid-snake.gif || true
 
-      # output branch’ine push
+      # 7️⃣ output branch’ine push
       - uses: crazy-max/ghaction-github-pages@v4
         with:
           target_branch: output
