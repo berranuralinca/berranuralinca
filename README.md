@@ -12,5 +12,5 @@
 
 ---
 [![](https://visitcount.itsvg.in/api?id=berranuralinca&icon=9&color=3)](https://visitcount.itsvg.in)
-![snake gif](https://github.com/YOUR_USERNAME/YOUR_USERNAME/blob/output/github-contribution-grid-snake.gif)
+![snake gif](https://github.com/berranuralinca/berranuralinca/blob/output/github-contribution-grid-snake.gif)
 <!-- Proudly created with GPRM ( https://gprm.itsvg.in ) -->
