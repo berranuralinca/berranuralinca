@@ -10,11 +10,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Repo’yu çek
       - uses: actions/checkout@v4
 
+      # dist klasörünü oluştur
       - name: Create dist folder
         run: mkdir -p dist
 
+      # Snake SVG ve GIF üret
       - uses: Platane/snk@v3
         id: snake-gif
         with:
@@ -23,11 +26,5 @@ jobs:
             dist/github-contribution-grid-snake.gif
             dist/github-contribution-grid-snake.svg
 
-      - run: git status
-
-      - uses: crazy-max/ghaction-github-pages@v4
-        with:
-          target_branch: output
-          build_dir: dist
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      # Durumu kontrol et
+      - run: git statu
