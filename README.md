@@ -1,5 +1,7 @@
 # 💫 About Me:
-🔭 I’m currently working on I data science and AI with Python.<br>
+Experienced in developing machine learning projects involving classification, regression, clustering, anomaly detection, association rule mining and ensemble learning. Hands-on experience with Python, Pandas, NumPy, Scikit-learn.
+
+Software development experience with C#, ASP.NET Core MVC, Entity Framework Core, SQL Server, React, Next.js, TypeScript, Tailwind CSS, Strapi and REST APIs. Experienced in data processing, SQL query development, relational database design, API integration, web application development and Git-based software development workflows.<br>
 
 
 
@@ -9,15 +11,7 @@
 
 
 
-
-# 📊 GitHub Stats:
-![](https://github-readme-stats.vercel.app/api?username=berranuralinca&theme=dark&hide_border=false&include_all_commits=false&count_private=false)<br/>
-![](https://nirzak-streak-stats.vercel.app/?user=berranuralinca&theme=dark&hide_border=false)<br/>
-![](https://github-readme-stats.vercel.app/api/top-langs/?username=berranuralinca&theme=dark&hide_border=false&include_all_commits=false&count_private=false&layout=compact)
-
----
-[![](https://visitcount.itsvg.in/api?id=berranuralinca&icon=9&color=3)](https://visitcount.itsvg.in)
 ![snake gif](https://github.com/berranuralinca/berranuralinca/blob/output/github-contribution-grid-snake.gif)
 
 
-<!-- Proudly created with GPRM ( https://gprm.itsvg.in ) -->
+
